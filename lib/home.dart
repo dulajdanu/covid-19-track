@@ -90,38 +90,39 @@ Widget customListTile(val1, val2, val3) {
           height: 100,
           width: 600,
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          val1,
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Text(val2),
-                        Text(val3)
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 30),
-                      child: Container(
-                        height: 60,
-                        width: 60,
-                        color: Colors.green,
-                        child: Image.network(
-                          'https://www.countryflags.io/$val3/flat/64.png',
-                        ),
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        val1,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                    )
-                  ],
-                )),
-          )),
+                      Text(val2),
+                      Text(val3)
+                    ],
+                  ),
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Container(
+                      // height: 60,
+                      // width: 60,
+                      // color: Colors.green,
+                      child: Image.network(
+                        'https://www.countryflags.io/$val3/flat/64.png',
+                      ),
+                    ),
+                  ),
+                ],
+              ))),
     );
   } else {
     return Padding(
@@ -153,9 +154,9 @@ Widget customListTile(val1, val2, val3) {
                     Padding(
                       padding: EdgeInsets.only(left: 30),
                       child: Container(
-                        height: 60,
-                        width: 60,
-                        color: Colors.green,
+                        // height: 60,
+                        // width: 60,
+                        // color: Colors.green,
                         child: Image.network(
                           'https://www.countryflags.io/be/flat/64.png',
                         ),
