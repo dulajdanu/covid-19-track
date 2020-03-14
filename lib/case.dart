@@ -6,9 +6,10 @@ class Case {
   int todayDeaths;
   int recovered;
   int critical;
+  String countryCode;
 
   Case(this.country, this.cases, this.todayCases, this.deaths, this.todayDeaths,
-      this.recovered, this.critical);
+      this.recovered, this.critical, this.countryCode);
 
   Case.fromJson(Map<String, dynamic> json) {
     country = json['country'];

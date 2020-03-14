@@ -5,31 +5,47 @@ import 'package:async/async.dart';
 import 'dart:convert';
 
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+  Home(this.countriesMap);
+
+  final countriesMap;
 
   @override
   _HomeState createState() => _HomeState();
 }
 
-Future<List<Case>> _getCases() async {
-  var response = await http.get("https://corona.lmao.ninja/countries");
-  if (response.statusCode == 200) {
-    var jsonData = json.decode(response.body);
-
-    List<Case> cases = [];
-    for (var c in jsonData) {
-      Case case1 = Case(c["country"], c["cases"], c["todayCases"], c["deaths"],
-          c["todayDeaths"], c["recovered"], c["critical"]);
-      cases.add(case1);
-    }
-    print(cases.length);
-    return cases;
-  }
-}
-
 getCountry() {}
 
 class _HomeState extends State<Home> {
+  Future<List<Case>> _getCases() async {
+    var response = await http.get("https://corona.lmao.ninja/countries");
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+
+      List<Case> cases = [];
+      for (var c in jsonData) {
+        Case case1 = Case(
+            c["country"],
+            c["cases"],
+            c["todayCases"],
+            c["deaths"],
+            c["todayDeaths"],
+            c["recovered"],
+            c["countriesMapcritical"],
+            widget.countriesMap[c["country"]]);
+        cases.add(case1);
+      }
+      print(cases.length);
+      return cases;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print("in home widget");
+    print(widget.countriesMap);
+  }
+
   // final countries = ;
   @override
   Widget build(BuildContext context) {
@@ -54,7 +70,7 @@ class _HomeState extends State<Home> {
                 return customListTile(
                     snapshot.data[index].country,
                     snapshot.data[index].cases.toString(),
-                    snapshot.data[index].todayDeaths.toString());
+                    snapshot.data[index].countryCode.toString());
               },
             );
           }
@@ -65,30 +81,89 @@ class _HomeState extends State<Home> {
 }
 
 Widget customListTile(val1, val2, val3) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 20, top: 10, right: 20),
-    child: Container(
-        decoration: BoxDecoration(
-            color: Colors.redAccent, borderRadius: BorderRadius.circular(10)),
-        height: 100,
-        width: 600,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  val1,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(val2),
-                Text(val3)
-              ],
-            ),
-          ),
-        )),
-  );
+  if (val3 != null) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, top: 10, right: 20),
+      child: Container(
+          decoration: BoxDecoration(
+              color: Colors.redAccent, borderRadius: BorderRadius.circular(10)),
+          height: 100,
+          width: 600,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  children: <Widget>[
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          val1,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(val2),
+                        Text(val3)
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 30),
+                      child: Container(
+                        height: 60,
+                        width: 60,
+                        color: Colors.green,
+                        child: Image.network(
+                          'https://www.countryflags.io/$val3/flat/64.png',
+                        ),
+                      ),
+                    )
+                  ],
+                )),
+          )),
+    );
+  } else {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, top: 10, right: 20),
+      child: Container(
+          decoration: BoxDecoration(
+              color: Colors.redAccent, borderRadius: BorderRadius.circular(10)),
+          height: 100,
+          width: 600,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  children: <Widget>[
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          val1,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(val2),
+                        Text(val3)
+                      ],
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 30),
+                      child: Container(
+                        height: 60,
+                        width: 60,
+                        color: Colors.green,
+                        child: Image.network(
+                          'https://www.countryflags.io/be/flat/64.png',
+                        ),
+                      ),
+                    )
+                  ],
+                )),
+          )),
+    );
+  }
 }
