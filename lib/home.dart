@@ -1,3 +1,4 @@
+import 'package:covid19countrytracker/details.dart';
 import 'package:flutter/material.dart';
 import 'case.dart';
 import 'package:http/http.dart' as http;
@@ -84,22 +85,44 @@ class _HomeState extends State<Home> {
                     var cCode = snapshot.data[index].countryCode;
                     var cName = snapshot.data[index].country;
                     if (cCode != null) {
-                      return ListTile(
-                        onTap: () => print("press"),
-                        leading: Icon(Icons.star),
-                        isThreeLine: true,
-                        trailing: Image.network(
-                          'https://www.countryflags.io/$cCode/flat/64.png',
-                        ),
-                        title: Text(
-                          snapshot.data[index].country,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text("Total Cases : " +
-                            snapshot.data[index].cases.toString() +
-                            "\n" +
-                            "Today Cases : " +
-                            snapshot.data[index].todayCases.toString()),
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                      cName,
+                                      snapshot.data[index].cases.toString(),
+                                      snapshot.data[index].todayCases
+                                          .toString(),
+                                      snapshot.data[index].deaths.toString(),
+                                      snapshot.data[index].todayDeaths
+                                          .toString(),
+                                      snapshot.data[index].recovered.toString(),
+                                      snapshot.data[index].critical.toString(),
+                                      cCode)));
+                        },
+                        child: Hero(
+                            tag: cName,
+                            child: Material(
+                              child: ListTile(
+                                // onTap: () => print("press"),
+                                leading: Icon(Icons.star),
+                                isThreeLine: true,
+                                trailing: Image.network(
+                                  'https://www.countryflags.io/$cCode/flat/64.png',
+                                ),
+                                title: Text(
+                                  snapshot.data[index].country,
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                subtitle: Text("Total Cases : " +
+                                    snapshot.data[index].cases.toString() +
+                                    "\n" +
+                                    "Today Cases : " +
+                                    snapshot.data[index].todayCases.toString()),
+                              ),
+                            )),
                       );
                     } else if (cName == "USA") {
                       print("inside else part");
