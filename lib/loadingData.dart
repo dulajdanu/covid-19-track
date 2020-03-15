@@ -35,50 +35,94 @@ class _LoadingDataState extends State<LoadingData> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
-        future: _getCountries(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (!snapshot.hasData) {
+      body: SafeArea(
+        top: true,
+        child: FutureBuilder(
+          future: _getCountries(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (!snapshot.hasData) {
+                return Container(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              } else {
+                // return ListView.builder(
+                //   itemCount: snapshot.data.length,
+                //   itemBuilder: (BuildContext context, int index) {
+                //     countriesMap[snapshot.data[index].name.toString()] =
+                //         snapshot.data[index].code.toString();
+                //     return ListTile(
+                //       title: Text(snapshot.data[index].code),
+                //       subtitle: Text(snapshot.data[index].name),
+                //     );
+                //   },
+                // );
+                return Stack(
+                  children: <Widget>[
+                    Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.redAccent,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Align(
+                        alignment: Alignment.topCenter,
+                        child: Text(
+                          "Corona Tracker",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 30),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Container(
+                          child: Align(
+                            // alignment: Alignment.center,
+                            child: Image.asset(
+                              "lib/assets/c.jpg",
+                              // fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          height: 30,
+                          width: 100,
+                          color: Colors.green,
+                          child: GestureDetector(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Home(countriesMap))),
+                            child: Center(
+                              child: Text("Continue"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              }
+            } else {
               return Container(
                 child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            } else {
-              // return ListView.builder(
-              //   itemCount: snapshot.data.length,
-              //   itemBuilder: (BuildContext context, int index) {
-              //     countriesMap[snapshot.data[index].name.toString()] =
-              //         snapshot.data[index].code.toString();
-              //     return ListTile(
-              //       title: Text(snapshot.data[index].code),
-              //       subtitle: Text(snapshot.data[index].name),
-              //     );
-              //   },
-              // );
-              return GestureDetector(
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Home(countriesMap))),
-                child: Container(
-                  height: 100,
-                  width: 50,
-                  child: Center(
-                    child: Text("Load Home"),
-                  ),
+                  child: Text("Something is Wrong"),
                 ),
               );
             }
-          } else {
-            return Container(
-              child: Center(
-                child: Text("Something is Wrong"),
-              ),
-            );
-          }
-        },
+          },
+        ),
       ),
     );
   }
