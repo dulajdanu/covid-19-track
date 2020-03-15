@@ -67,10 +67,78 @@ class _HomeState extends State<Home> {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
-                return customListTile(
-                    snapshot.data[index].country,
-                    snapshot.data[index].cases.toString(),
-                    snapshot.data[index].countryCode.toString());
+                // return customListTile(
+                //     snapshot.data[index].country,
+                //     snapshot.data[index].cases.toString(),
+                //     snapshot.data[index].countryCode.toString());
+                var cCode = snapshot.data[index].countryCode;
+                var cName = snapshot.data[index].country;
+                print(cCode.runtimeType);
+                if (cCode != null) {
+                  return ListTile(
+                    trailing: Image.network(
+                      'https://www.countryflags.io/$cCode/flat/64.png',
+                    ),
+                    title: Text(snapshot.data[index].country),
+                    subtitle: Text(snapshot.data[index].cases.toString()),
+                  );
+                } else if (cName == "USA") {
+                  print("inside else part");
+                  return ListTile(
+                    trailing: Image.network(
+                      'https://www.countryflags.io/um/flat/64.png',
+                    ),
+                    title: Text(snapshot.data[index].country),
+                    subtitle: Text(snapshot.data[index].cases.toString()),
+                  );
+                } else if (cName == "Iran") {
+                  print("inside else part");
+                  return ListTile(
+                    trailing: Image.network(
+                      'https://www.countryflags.io/ir/flat/64.png',
+                    ),
+                    title: Text(snapshot.data[index].country),
+                    subtitle: Text(snapshot.data[index].cases.toString()),
+                  );
+                } else if (cName == "S. Korea") {
+                  print("inside else part");
+                  return ListTile(
+                    trailing: Image.network(
+                      'https://www.countryflags.io/kr/flat/64.png',
+                    ),
+                    title: Text(snapshot.data[index].country),
+                    subtitle: Text(snapshot.data[index].cases.toString()),
+                  );
+                } else if (cName == "UK") {
+                  print("inside else part");
+                  return ListTile(
+                    trailing: Image.network(
+                      'https://www.countryflags.io/gb/flat/64.png',
+                    ),
+                    title: Text(snapshot.data[index].country),
+                    subtitle: Text(snapshot.data[index].cases.toString()),
+                  );
+                } else if (cName == "Belgium") {
+                  print("inside else part");
+                  return ListTile(
+                    trailing: Image.network(
+                      'https://www.countryflags.io/be/flat/64.png',
+                    ),
+                    title: Text(snapshot.data[index].country),
+                    subtitle: Text(snapshot.data[index].cases.toString()),
+                  );
+                } else {
+                  print("inside else part");
+                  return ListTile(
+                    trailing: Container(
+                      height: 50,
+                      width: 60,
+                      color: Colors.green,
+                    ),
+                    title: Text(snapshot.data[index].country),
+                    subtitle: Text(snapshot.data[index].cases.toString()),
+                  );
+                }
               },
             );
           }
@@ -133,38 +201,40 @@ Widget customListTile(val1, val2, val3) {
           height: 100,
           width: 600,
           child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          val1,
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Text(val2),
-                        Text(val3)
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 30),
-                      child: Container(
-                        // height: 60,
-                        // width: 60,
-                        // color: Colors.green,
-                        child: Image.network(
-                          'https://www.countryflags.io/be/flat/64.png',
-                        ),
+              padding: const EdgeInsets.only(left: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        val1,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                    )
-                  ],
-                )),
-          )),
+                      Text(val2),
+                      Text(val3)
+                    ],
+                  ),
+                  // SizedBox(
+                  //   width: 50,
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Container(
+                      height: 60,
+                      width: 60,
+                      color: Colors.green,
+                      child: Icon(Icons.content_cut),
+                      // child: Image.network(
+                      //   'https://www.countryflags.io/be/flat/64.png',
+                      // ),
+                    ),
+                  ),
+                ],
+              ))),
     );
   }
 }
