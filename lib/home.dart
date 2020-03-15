@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Covid 19"),
+        title: Text("Covid-19"),
       ),
       body: FutureBuilder(
         future: _getCases(),
@@ -64,82 +64,100 @@ class _HomeState extends State<Home> {
               ),
             );
           } else {
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                // return customListTile(
-                //     snapshot.data[index].country,
-                //     snapshot.data[index].cases.toString(),
-                //     snapshot.data[index].countryCode.toString());
-                var cCode = snapshot.data[index].countryCode;
-                var cName = snapshot.data[index].country;
-                print(cCode.runtimeType);
-                if (cCode != null) {
-                  return ListTile(
-                    trailing: Image.network(
-                      'https://www.countryflags.io/$cCode/flat/64.png',
-                    ),
-                    title: Text(snapshot.data[index].country),
-                    subtitle: Text(snapshot.data[index].cases.toString()),
-                  );
-                } else if (cName == "USA") {
-                  print("inside else part");
-                  return ListTile(
-                    trailing: Image.network(
-                      'https://www.countryflags.io/um/flat/64.png',
-                    ),
-                    title: Text(snapshot.data[index].country),
-                    subtitle: Text(snapshot.data[index].cases.toString()),
-                  );
-                } else if (cName == "Iran") {
-                  print("inside else part");
-                  return ListTile(
-                    trailing: Image.network(
-                      'https://www.countryflags.io/ir/flat/64.png',
-                    ),
-                    title: Text(snapshot.data[index].country),
-                    subtitle: Text(snapshot.data[index].cases.toString()),
-                  );
-                } else if (cName == "S. Korea") {
-                  print("inside else part");
-                  return ListTile(
-                    trailing: Image.network(
-                      'https://www.countryflags.io/kr/flat/64.png',
-                    ),
-                    title: Text(snapshot.data[index].country),
-                    subtitle: Text(snapshot.data[index].cases.toString()),
-                  );
-                } else if (cName == "UK") {
-                  print("inside else part");
-                  return ListTile(
-                    trailing: Image.network(
-                      'https://www.countryflags.io/gb/flat/64.png',
-                    ),
-                    title: Text(snapshot.data[index].country),
-                    subtitle: Text(snapshot.data[index].cases.toString()),
-                  );
-                } else if (cName == "Belgium") {
-                  print("inside else part");
-                  return ListTile(
-                    trailing: Image.network(
-                      'https://www.countryflags.io/be/flat/64.png',
-                    ),
-                    title: Text(snapshot.data[index].country),
-                    subtitle: Text(snapshot.data[index].cases.toString()),
-                  );
-                } else {
-                  print("inside else part");
-                  return ListTile(
-                    trailing: Container(
-                      height: 50,
-                      width: 60,
-                      color: Colors.green,
-                    ),
-                    title: Text(snapshot.data[index].country),
-                    subtitle: Text(snapshot.data[index].cases.toString()),
-                  );
-                }
-              },
+            return Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "The Latest Details",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+                Expanded(
+                    child: ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    // return customListTile(
+                    //     snapshot.data[index].country,
+                    //     snapshot.data[index].cases.toString(),
+                    //     snapshot.data[index].countryCode.toString());
+                    var cCode = snapshot.data[index].countryCode;
+                    var cName = snapshot.data[index].country;
+                    if (cCode != null) {
+                      return ListTile(
+                        trailing: Image.network(
+                          'https://www.countryflags.io/$cCode/flat/64.png',
+                        ),
+                        title: Text(snapshot.data[index].country),
+                        subtitle: Text(
+                            "Cases : " + snapshot.data[index].cases.toString()),
+                      );
+                    } else if (cName == "USA") {
+                      print("inside else part");
+                      return ListTile(
+                        trailing: Image.network(
+                          'https://www.countryflags.io/um/flat/64.png',
+                        ),
+                        title: Text(snapshot.data[index].country),
+                        subtitle: Text(
+                            "Cases : " + snapshot.data[index].cases.toString()),
+                      );
+                    } else if (cName == "Iran") {
+                      print("inside else part");
+                      return ListTile(
+                        trailing: Image.network(
+                          'https://www.countryflags.io/ir/flat/64.png',
+                        ),
+                        title: Text(snapshot.data[index].country),
+                        subtitle: Text(
+                            "Cases : " + snapshot.data[index].cases.toString()),
+                      );
+                    } else if (cName == "S. Korea") {
+                      print("inside else part");
+                      return ListTile(
+                        trailing: Image.network(
+                          'https://www.countryflags.io/kr/flat/64.png',
+                        ),
+                        title: Text(snapshot.data[index].country),
+                        subtitle: Text(
+                            "Cases : " + snapshot.data[index].cases.toString()),
+                      );
+                    } else if (cName == "UK") {
+                      print("inside else part");
+                      return ListTile(
+                        trailing: Image.network(
+                          'https://www.countryflags.io/gb/flat/64.png',
+                        ),
+                        title: Text(snapshot.data[index].country),
+                        subtitle: Text(
+                            "Cases : " + snapshot.data[index].cases.toString()),
+                      );
+                    } else if (cName == "Belgium") {
+                      print("inside else part");
+                      return ListTile(
+                        trailing: Image.network(
+                          'https://www.countryflags.io/be/flat/64.png',
+                        ),
+                        title: Text(snapshot.data[index].country),
+                        subtitle: Text(
+                            "Cases : " + snapshot.data[index].cases.toString()),
+                      );
+                    } else {
+                      print("inside else part");
+                      return ListTile(
+                        trailing: Container(
+                          height: 50,
+                          width: 60,
+                          color: Colors.green,
+                        ),
+                        title: Text(snapshot.data[index].country),
+                        subtitle: Text(
+                            "Cases : " + snapshot.data[index].cases.toString()),
+                      );
+                    }
+                  },
+                ))
+              ],
             );
           }
         },
