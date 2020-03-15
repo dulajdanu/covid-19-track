@@ -85,12 +85,19 @@ class _HomeState extends State<Home> {
                     var cName = snapshot.data[index].country;
                     if (cCode != null) {
                       return ListTile(
+                        isThreeLine: true,
                         trailing: Image.network(
                           'https://www.countryflags.io/$cCode/flat/64.png',
                         ),
-                        title: Text(snapshot.data[index].country),
-                        subtitle: Text(
-                            "Cases : " + snapshot.data[index].cases.toString()),
+                        title: Text(
+                          snapshot.data[index].country,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text("Total Cases : " +
+                            snapshot.data[index].cases.toString() +
+                            "\n" +
+                            "Today Cases : " +
+                            snapshot.data[index].todayCases.toString()),
                       );
                     } else if (cName == "USA") {
                       print("inside else part");
@@ -98,9 +105,16 @@ class _HomeState extends State<Home> {
                         trailing: Image.network(
                           'https://www.countryflags.io/um/flat/64.png',
                         ),
-                        title: Text(snapshot.data[index].country),
-                        subtitle: Text(
-                            "Cases : " + snapshot.data[index].cases.toString()),
+                        title: Text(
+                          snapshot.data[index].country,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text("Total Cases : " +
+                            snapshot.data[index].cases.toString() +
+                            "\n" +
+                            "Today Cases : " +
+                            snapshot.data[index].todayCases.toString()),
                       );
                     } else if (cName == "Iran") {
                       print("inside else part");
@@ -108,9 +122,16 @@ class _HomeState extends State<Home> {
                         trailing: Image.network(
                           'https://www.countryflags.io/ir/flat/64.png',
                         ),
-                        title: Text(snapshot.data[index].country),
-                        subtitle: Text(
-                            "Cases : " + snapshot.data[index].cases.toString()),
+                        title: Text(
+                          snapshot.data[index].country,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text("Total Cases : " +
+                            snapshot.data[index].cases.toString() +
+                            "\n" +
+                            "Today Cases : " +
+                            snapshot.data[index].todayCases.toString()),
                       );
                     } else if (cName == "S. Korea") {
                       print("inside else part");
@@ -118,9 +139,16 @@ class _HomeState extends State<Home> {
                         trailing: Image.network(
                           'https://www.countryflags.io/kr/flat/64.png',
                         ),
-                        title: Text(snapshot.data[index].country),
-                        subtitle: Text(
-                            "Cases : " + snapshot.data[index].cases.toString()),
+                        title: Text(
+                          snapshot.data[index].country,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text("Total Cases : " +
+                            snapshot.data[index].cases.toString() +
+                            "\n" +
+                            "Today Cases : " +
+                            snapshot.data[index].todayCases.toString()),
                       );
                     } else if (cName == "UK") {
                       print("inside else part");
@@ -128,9 +156,16 @@ class _HomeState extends State<Home> {
                         trailing: Image.network(
                           'https://www.countryflags.io/gb/flat/64.png',
                         ),
-                        title: Text(snapshot.data[index].country),
-                        subtitle: Text(
-                            "Cases : " + snapshot.data[index].cases.toString()),
+                        title: Text(
+                          snapshot.data[index].country,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text("Total Cases : " +
+                            snapshot.data[index].cases.toString() +
+                            "\n" +
+                            "Today Cases : " +
+                            snapshot.data[index].todayCases.toString()),
                       );
                     } else if (cName == "Belgium") {
                       print("inside else part");
@@ -138,9 +173,16 @@ class _HomeState extends State<Home> {
                         trailing: Image.network(
                           'https://www.countryflags.io/be/flat/64.png',
                         ),
-                        title: Text(snapshot.data[index].country),
-                        subtitle: Text(
-                            "Cases : " + snapshot.data[index].cases.toString()),
+                        title: Text(
+                          snapshot.data[index].country,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text("Total Cases : " +
+                            snapshot.data[index].cases.toString() +
+                            "\n" +
+                            "Today Cases : " +
+                            snapshot.data[index].todayCases.toString()),
                       );
                     } else {
                       print("inside else part");
@@ -150,9 +192,16 @@ class _HomeState extends State<Home> {
                           width: 60,
                           color: Colors.green,
                         ),
-                        title: Text(snapshot.data[index].country),
-                        subtitle: Text(
-                            "Cases : " + snapshot.data[index].cases.toString()),
+                        title: Text(
+                          snapshot.data[index].country,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text("Total Cases : " +
+                            snapshot.data[index].cases.toString() +
+                            "\n" +
+                            "Today Cases : " +
+                            snapshot.data[index].todayCases.toString()),
                       );
                     }
                   },
