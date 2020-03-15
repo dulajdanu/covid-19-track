@@ -117,7 +117,7 @@ class _LoadingDataState extends State<LoadingData> {
             } else {
               return Container(
                 child: Center(
-                  child: Text("Something is Wrong"),
+                  child: CircularProgressIndicator(),
                 ),
               );
             }
