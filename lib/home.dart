@@ -85,6 +85,8 @@ class _HomeState extends State<Home> {
                     var cName = snapshot.data[index].country;
                     if (cCode != null) {
                       return ListTile(
+                        onTap: () => print("press"),
+                        leading: Icon(Icons.star),
                         isThreeLine: true,
                         trailing: Image.network(
                           'https://www.countryflags.io/$cCode/flat/64.png',
@@ -102,6 +104,8 @@ class _HomeState extends State<Home> {
                     } else if (cName == "USA") {
                       print("inside else part");
                       return ListTile(
+                        onTap: () => print("press"),
+                        leading: Icon(Icons.star),
                         trailing: Image.network(
                           'https://www.countryflags.io/um/flat/64.png',
                         ),
@@ -119,6 +123,7 @@ class _HomeState extends State<Home> {
                     } else if (cName == "Iran") {
                       print("inside else part");
                       return ListTile(
+                        leading: Icon(Icons.star),
                         trailing: Image.network(
                           'https://www.countryflags.io/ir/flat/64.png',
                         ),
@@ -136,6 +141,7 @@ class _HomeState extends State<Home> {
                     } else if (cName == "S. Korea") {
                       print("inside else part");
                       return ListTile(
+                        leading: Icon(Icons.star),
                         trailing: Image.network(
                           'https://www.countryflags.io/kr/flat/64.png',
                         ),
@@ -153,6 +159,7 @@ class _HomeState extends State<Home> {
                     } else if (cName == "UK") {
                       print("inside else part");
                       return ListTile(
+                        leading: Icon(Icons.star),
                         trailing: Image.network(
                           'https://www.countryflags.io/gb/flat/64.png',
                         ),
@@ -170,6 +177,7 @@ class _HomeState extends State<Home> {
                     } else if (cName == "Belgium") {
                       print("inside else part");
                       return ListTile(
+                        leading: Icon(Icons.star),
                         trailing: Image.network(
                           'https://www.countryflags.io/be/flat/64.png',
                         ),
@@ -187,6 +195,7 @@ class _HomeState extends State<Home> {
                     } else {
                       print("inside else part");
                       return ListTile(
+                        leading: Icon(Icons.star),
                         trailing: Container(
                           height: 50,
                           width: 60,
