@@ -50,6 +50,14 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  var cCode;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    cCode = widget.countryCode;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,15 +68,101 @@ class _DetailScreenState extends State<DetailScreen> {
             SizedBox(
               height: 80,
             ),
-            Hero(
-              tag: widget.country,
-              child: Image.network(
-                'https://picsum.photos/250?image=9',
-              ),
+            Text(
+              widget.country,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
-            Text(widget.country),
-            Text(widget.cases),
-            Text(widget.todayCases)
+            Hero(
+                tag: widget.country,
+                child: Container(
+                  height: 150,
+                  width: 200,
+                  child: Image.network(
+                    "https://www.countryflags.io/$cCode/flat/64.png",
+                    fit: BoxFit.fill,
+                  ),
+                )),
+            Text(
+              "Total Number Of Cases",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.cases,
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Total Number Of Cases Today",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.todayCases,
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Total Number Of Deaths",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.deaths,
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Total Number Of Today Deaths",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.todayDeaths,
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Total Number Of Recovered",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.recovered,
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Total Number Of Critical",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.critical != "null" ? widget.critical : 0.toString(),
+              style: TextStyle(fontSize: 15),
+            )
           ],
         )),
         onTap: () {
