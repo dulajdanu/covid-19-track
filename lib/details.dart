@@ -75,13 +75,16 @@ class _DetailScreenState extends State<DetailScreen> {
             Hero(
                 tag: widget.country,
                 child: Container(
-                  height: 150,
-                  width: 200,
-                  child: Image.network(
-                    "https://www.countryflags.io/$cCode/flat/64.png",
-                    fit: BoxFit.fill,
-                  ),
-                )),
+                    height: 150,
+                    width: 180,
+                    child: (cCode != "")
+                        ? Image.network(
+                            "https://www.countryflags.io/$cCode/flat/64.png",
+                            fit: BoxFit.contain,
+                          )
+                        : Container(
+                            color: Colors.green,
+                          ))),
             Text(
               "Total Number Of Cases",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

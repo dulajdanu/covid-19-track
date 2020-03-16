@@ -126,114 +126,212 @@ class _HomeState extends State<Home> {
                       );
                     } else if (cName == "USA") {
                       print("inside else part");
-                      return ListTile(
-                        onTap: () => print("press"),
-                        leading: Icon(Icons.star),
-                        trailing: Image.network(
-                          'https://www.countryflags.io/um/flat/64.png',
+                      return GestureDetector(
+                        onTap: () {
+                          print("load usa");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                      cName,
+                                      snapshot.data[index].cases.toString(),
+                                      snapshot.data[index].todayCases
+                                          .toString(),
+                                      snapshot.data[index].deaths.toString(),
+                                      snapshot.data[index].todayDeaths
+                                          .toString(),
+                                      snapshot.data[index].recovered.toString(),
+                                      snapshot.data[index].critical.toString(),
+                                      "um")));
+                        },
+                        child: Hero(
+                          tag: cName,
+                          child: Material(
+                            child: ListTile(
+                              leading: Icon(Icons.star),
+                              trailing: Image.network(
+                                'https://www.countryflags.io/um/flat/64.png',
+                              ),
+                              title: Text(
+                                snapshot.data[index].country,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              isThreeLine: true,
+                              subtitle: Text("Total Cases : " +
+                                  snapshot.data[index].cases.toString() +
+                                  "\n" +
+                                  "Today Cases : " +
+                                  snapshot.data[index].todayCases.toString()),
+                            ),
+                          ),
                         ),
-                        title: Text(
-                          snapshot.data[index].country,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        isThreeLine: true,
-                        subtitle: Text("Total Cases : " +
-                            snapshot.data[index].cases.toString() +
-                            "\n" +
-                            "Today Cases : " +
-                            snapshot.data[index].todayCases.toString()),
                       );
                     } else if (cName == "Iran") {
-                      print("inside else part");
-                      return ListTile(
-                        leading: Icon(Icons.star),
-                        trailing: Image.network(
-                          'https://www.countryflags.io/ir/flat/64.png',
+                      return GestureDetector(
+                        onTap: () {
+                          print("load usa");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                      cName,
+                                      snapshot.data[index].cases.toString(),
+                                      snapshot.data[index].todayCases
+                                          .toString(),
+                                      snapshot.data[index].deaths.toString(),
+                                      snapshot.data[index].todayDeaths
+                                          .toString(),
+                                      snapshot.data[index].recovered.toString(),
+                                      snapshot.data[index].critical.toString(),
+                                      "ir")));
+                        },
+                        child: Hero(
+                          tag: cName,
+                          child: Material(
+                            child: ListTile(
+                              leading: Icon(Icons.star),
+                              trailing: Image.network(
+                                'https://www.countryflags.io/ir/flat/64.png',
+                              ),
+                              title: Text(
+                                snapshot.data[index].country,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              isThreeLine: true,
+                              subtitle: Text("Total Cases : " +
+                                  snapshot.data[index].cases.toString() +
+                                  "\n" +
+                                  "Today Cases : " +
+                                  snapshot.data[index].todayCases.toString()),
+                            ),
+                          ),
                         ),
-                        title: Text(
-                          snapshot.data[index].country,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        isThreeLine: true,
-                        subtitle: Text("Total Cases : " +
-                            snapshot.data[index].cases.toString() +
-                            "\n" +
-                            "Today Cases : " +
-                            snapshot.data[index].todayCases.toString()),
-                      );
-                    } else if (cName == "S. Korea") {
-                      print("inside else part");
-                      return ListTile(
-                        leading: Icon(Icons.star),
-                        trailing: Image.network(
-                          'https://www.countryflags.io/kr/flat/64.png',
-                        ),
-                        title: Text(
-                          snapshot.data[index].country,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        isThreeLine: true,
-                        subtitle: Text("Total Cases : " +
-                            snapshot.data[index].cases.toString() +
-                            "\n" +
-                            "Today Cases : " +
-                            snapshot.data[index].todayCases.toString()),
                       );
                     } else if (cName == "UK") {
-                      print("inside else part");
-                      return ListTile(
-                        leading: Icon(Icons.star),
-                        trailing: Image.network(
-                          'https://www.countryflags.io/gb/flat/64.png',
+                      return GestureDetector(
+                        onTap: () {
+                          print("load usa");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                      cName,
+                                      snapshot.data[index].cases.toString(),
+                                      snapshot.data[index].todayCases
+                                          .toString(),
+                                      snapshot.data[index].deaths.toString(),
+                                      snapshot.data[index].todayDeaths
+                                          .toString(),
+                                      snapshot.data[index].recovered.toString(),
+                                      snapshot.data[index].critical.toString(),
+                                      "gb")));
+                        },
+                        child: Hero(
+                          tag: cName,
+                          child: Material(
+                            child: ListTile(
+                              leading: Icon(Icons.star),
+                              trailing: Image.network(
+                                'https://www.countryflags.io/gb/flat/64.png',
+                              ),
+                              title: Text(
+                                snapshot.data[index].country,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              isThreeLine: true,
+                              subtitle: Text("Total Cases : " +
+                                  snapshot.data[index].cases.toString() +
+                                  "\n" +
+                                  "Today Cases : " +
+                                  snapshot.data[index].todayCases.toString()),
+                            ),
+                          ),
                         ),
-                        title: Text(
-                          snapshot.data[index].country,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        isThreeLine: true,
-                        subtitle: Text("Total Cases : " +
-                            snapshot.data[index].cases.toString() +
-                            "\n" +
-                            "Today Cases : " +
-                            snapshot.data[index].todayCases.toString()),
                       );
                     } else if (cName == "Belgium") {
-                      print("inside else part");
-                      return ListTile(
-                        leading: Icon(Icons.star),
-                        trailing: Image.network(
-                          'https://www.countryflags.io/be/flat/64.png',
+                      return GestureDetector(
+                        onTap: () {
+                          print("load usa");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                      cName,
+                                      snapshot.data[index].cases.toString(),
+                                      snapshot.data[index].todayCases
+                                          .toString(),
+                                      snapshot.data[index].deaths.toString(),
+                                      snapshot.data[index].todayDeaths
+                                          .toString(),
+                                      snapshot.data[index].recovered.toString(),
+                                      snapshot.data[index].critical.toString(),
+                                      "be")));
+                        },
+                        child: Hero(
+                          tag: cName,
+                          child: Material(
+                            child: ListTile(
+                              leading: Icon(Icons.star),
+                              trailing: Image.network(
+                                'https://www.countryflags.io/be/flat/64.png',
+                              ),
+                              title: Text(
+                                snapshot.data[index].country,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              isThreeLine: true,
+                              subtitle: Text("Total Cases : " +
+                                  snapshot.data[index].cases.toString() +
+                                  "\n" +
+                                  "Today Cases : " +
+                                  snapshot.data[index].todayCases.toString()),
+                            ),
+                          ),
                         ),
-                        title: Text(
-                          snapshot.data[index].country,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        isThreeLine: true,
-                        subtitle: Text("Total Cases : " +
-                            snapshot.data[index].cases.toString() +
-                            "\n" +
-                            "Today Cases : " +
-                            snapshot.data[index].todayCases.toString()),
                       );
                     } else {
                       print("inside else part");
-                      return ListTile(
-                        leading: Icon(Icons.star),
-                        trailing: Container(
-                          height: 50,
-                          width: 60,
-                          color: Colors.green,
+                      return GestureDetector(
+                        onTap: () {
+                          print("load usa");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                      cName,
+                                      snapshot.data[index].cases.toString(),
+                                      snapshot.data[index].todayCases
+                                          .toString(),
+                                      snapshot.data[index].deaths.toString(),
+                                      snapshot.data[index].todayDeaths
+                                          .toString(),
+                                      snapshot.data[index].recovered.toString(),
+                                      snapshot.data[index].critical.toString(),
+                                      "")));
+                        },
+                        child: Hero(
+                          tag: cName,
+                          child: Material(
+                            child: ListTile(
+                              leading: Icon(Icons.star),
+                              trailing: Container(
+                                height: 50,
+                                width: 60,
+                                color: Colors.green,
+                              ),
+                              title: Text(
+                                snapshot.data[index].country,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              isThreeLine: true,
+                              subtitle: Text("Total Cases : " +
+                                  snapshot.data[index].cases.toString() +
+                                  "\n" +
+                                  "Today Cases : " +
+                                  snapshot.data[index].todayCases.toString()),
+                            ),
+                          ),
                         ),
-                        title: Text(
-                          snapshot.data[index].country,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        isThreeLine: true,
-                        subtitle: Text("Total Cases : " +
-                            snapshot.data[index].cases.toString() +
-                            "\n" +
-                            "Today Cases : " +
-                            snapshot.data[index].todayCases.toString()),
                       );
                     }
                   },
