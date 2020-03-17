@@ -42,6 +42,7 @@ class _LoadingDataState extends State<LoadingData> {
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (!snapshot.hasData) {
+                print("no data");
                 return Container(
                   child: Center(
                     child: CircularProgressIndicator(),
@@ -66,51 +67,56 @@ class _LoadingDataState extends State<LoadingData> {
                       width: MediaQuery.of(context).size.width,
                       color: Colors.redAccent,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Text(
-                          "Corona Tracker",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Container(
+                    Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
                           child: Align(
-                            // alignment: Alignment.center,
-                            child: Image.asset(
-                              "lib/assets/c.jpg",
-                              // fit: BoxFit.cover,
+                            alignment: Alignment.topCenter,
+                            child: Text(
+                              "Corona Tracker",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 30),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          height: 30,
-                          width: 100,
-                          color: Colors.green,
-                          child: GestureDetector(
-                            onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Home(countriesMap))),
-                            child: Center(
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Image.asset(
+                            "lib/assets/c.jpg",
+                            // fit: BoxFit.cover,
+                            height: 500,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.all(10),
+                            child: RaisedButton(
+                              color: Colors.green,
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Home(countriesMap)));
+                              },
                               child: Text("Continue"),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
+                            ))
+                      ],
+                    ),
+                    // Positioned(
+                    //   child: Padding(
+                    //     padding: EdgeInsets.all(10),
+                    //     child: Container(
+                    //       child: Align(
+                    //         // alignment: Alignment.center,
+                    //         child: Image.asset(
+                    //           "lib/assets/c.jpg",
+                    //           // fit: BoxFit.cover,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 );
               }
