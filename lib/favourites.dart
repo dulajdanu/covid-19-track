@@ -16,8 +16,7 @@ class _favouritesState extends State<favourites> {
     // TODO: implement initState
     super.initState();
     print("inside fav page");
-    CountryModel c = Hive.box('countries').getAt(0);
-    print(c.name);
+    // Hive.box('countries').clear();
   }
 
   @override
@@ -43,12 +42,22 @@ class _favouritesState extends State<favourites> {
                   itemCount: list.length,
                   itemBuilder: (context, index) {
                     CountryModel cModel = list[index];
+                    var cde = cModel.code.toString();
                     return ListTile(
-                      title: Text(cModel.name),
-                      leading: Text(cModel.code.toString()),
-                      // subtitle: Text(
-                      //     personModel.birthDate.toLocal().toString()),
-                    );
+                        title: Text(cModel.name),
+                        leading: Text(cde),
+                        trailing: (cModel.code.toString() != 'null'
+                            ? Image.network(
+                                'https://www.countryflags.io/$cde/flat/64.png',
+                              )
+                            : Container(
+                                height: 50,
+                                width: 60,
+                                color: Colors.green,
+                              ))
+                        // subtitle: Text(
+                        //     personModel.birthDate.toLocal().toString()),
+                        );
                   },
                 );
               },

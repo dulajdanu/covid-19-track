@@ -174,7 +174,7 @@ class _HomeState extends State<Home> {
                             child: ListTile(
                               leading: IconButton(
                                   icon: Icon(Icons.star),
-                                  onPressed: () => {addToFav(cName, cCode)}),
+                                  onPressed: () => {addToFav(cName, "um")}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/um/flat/64.png',
                               ),
@@ -217,7 +217,7 @@ class _HomeState extends State<Home> {
                             child: ListTile(
                               leading: IconButton(
                                   icon: Icon(Icons.star),
-                                  onPressed: () => {addToFav(cName, cCode)}),
+                                  onPressed: () => {addToFav(cName, "ir")}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/ir/flat/64.png',
                               ),
@@ -260,7 +260,7 @@ class _HomeState extends State<Home> {
                             child: ListTile(
                               leading: IconButton(
                                   icon: Icon(Icons.star),
-                                  onPressed: () => {addToFav(cName, cCode)}),
+                                  onPressed: () => {addToFav(cName, "gb")}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/gb/flat/64.png',
                               ),
@@ -303,7 +303,7 @@ class _HomeState extends State<Home> {
                             child: ListTile(
                               leading: IconButton(
                                   icon: Icon(Icons.star),
-                                  onPressed: () => {addToFav(cName, cCode)}),
+                                  onPressed: () => {addToFav(cName, "be")}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/be/flat/64.png',
                               ),
