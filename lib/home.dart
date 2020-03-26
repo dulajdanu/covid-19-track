@@ -1,9 +1,12 @@
+import 'package:covid19countrytracker/countryModel.dart';
 import 'package:covid19countrytracker/details.dart';
+import 'package:covid19countrytracker/favourites.dart';
 import 'package:flutter/material.dart';
 import 'case.dart';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
 import 'dart:convert';
+import 'package:hive/hive.dart';
 
 class Home extends StatefulWidget {
   Home(this.countriesMap);
@@ -40,6 +43,13 @@ class _HomeState extends State<Home> {
     }
   }
 
+  addToFav(cname, cCode) {
+    Hive.box('countries')
+        .add(CountryModel(cname, cCode))
+        .then((v) => print("Country added successfully"))
+        .catchError((onError) => print(onError));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +62,18 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 5),
+            child: IconButton(
+              onPressed: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => favourites()))
+              },
+              icon: Icon(Icons.star),
+            ),
+          )
+        ],
         title: Text("Covid-19"),
       ),
       body: FutureBuilder(
@@ -107,7 +129,9 @@ class _HomeState extends State<Home> {
                             child: Material(
                               child: ListTile(
                                 // onTap: () => print("press"),
-                                leading: Icon(Icons.star),
+                                leading: IconButton(
+                                    icon: Icon(Icons.star),
+                                    onPressed: () => {addToFav(cName, cCode)}),
                                 isThreeLine: true,
                                 trailing: Image.network(
                                   'https://www.countryflags.io/$cCode/flat/64.png',
@@ -148,7 +172,9 @@ class _HomeState extends State<Home> {
                           tag: cName,
                           child: Material(
                             child: ListTile(
-                              leading: Icon(Icons.star),
+                              leading: IconButton(
+                                  icon: Icon(Icons.star),
+                                  onPressed: () => {addToFav(cName, cCode)}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/um/flat/64.png',
                               ),
@@ -189,7 +215,9 @@ class _HomeState extends State<Home> {
                           tag: cName,
                           child: Material(
                             child: ListTile(
-                              leading: Icon(Icons.star),
+                              leading: IconButton(
+                                  icon: Icon(Icons.star),
+                                  onPressed: () => {addToFav(cName, cCode)}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/ir/flat/64.png',
                               ),
@@ -230,7 +258,9 @@ class _HomeState extends State<Home> {
                           tag: cName,
                           child: Material(
                             child: ListTile(
-                              leading: Icon(Icons.star),
+                              leading: IconButton(
+                                  icon: Icon(Icons.star),
+                                  onPressed: () => {addToFav(cName, cCode)}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/gb/flat/64.png',
                               ),
@@ -271,7 +301,9 @@ class _HomeState extends State<Home> {
                           tag: cName,
                           child: Material(
                             child: ListTile(
-                              leading: Icon(Icons.star),
+                              leading: IconButton(
+                                  icon: Icon(Icons.star),
+                                  onPressed: () => {addToFav(cName, cCode)}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/be/flat/64.png',
                               ),
@@ -313,7 +345,9 @@ class _HomeState extends State<Home> {
                           tag: cName,
                           child: Material(
                             child: ListTile(
-                              leading: Icon(Icons.star),
+                              leading: IconButton(
+                                  icon: Icon(Icons.star),
+                                  onPressed: () => {addToFav(cName, cCode)}),
                               trailing: Container(
                                 height: 50,
                                 width: 60,

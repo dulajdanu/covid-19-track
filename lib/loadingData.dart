@@ -1,5 +1,6 @@
 import 'package:covid19countrytracker/home.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'case.dart';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
@@ -60,64 +61,82 @@ class _LoadingDataState extends State<LoadingData> {
                 //     );
                 //   },
                 // );
-                return Stack(
-                  children: <Widget>[
-                    Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.redAccent,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20.0),
-                          child: Align(
-                            alignment: Alignment.topCenter,
-                            child: Text(
-                              "Corona Tracker",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30),
+                return FutureBuilder(
+                  future: Hive.openBox('countries'),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      if (snapshot.hasError)
+                        return Text(snapshot.error.toString());
+                      else {
+                        return Stack(
+                          children: <Widget>[
+                            Container(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.redAccent,
                             ),
-                          ),
+                            Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text(
+                                      "Corona Tracker",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 30),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image.asset(
+                                    "lib/assets/c.jpg",
+                                    // fit: BoxFit.cover,
+                                    height: 500,
+                                  ),
+                                ),
+                                Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: RaisedButton(
+                                      color: Colors.green,
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    Home(countriesMap)));
+                                      },
+                                      child: Text("Continue"),
+                                    ))
+                              ],
+                            ),
+                            // Positioned(
+                            //   child: Padding(
+                            //     padding: EdgeInsets.all(10),
+                            //     child: Container(
+                            //       child: Align(
+                            //         // alignment: Alignment.center,
+                            //         child: Image.asset(
+                            //           "lib/assets/c.jpg",
+                            //           // fit: BoxFit.cover,
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                          ],
+                        );
+                      }
+                    } else {
+                      return Container(
+                        child: Center(
+                          child: CircularProgressIndicator(),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Image.asset(
-                            "lib/assets/c.jpg",
-                            // fit: BoxFit.cover,
-                            height: 500,
-                          ),
-                        ),
-                        Padding(
-                            padding: EdgeInsets.all(10),
-                            child: RaisedButton(
-                              color: Colors.green,
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            Home(countriesMap)));
-                              },
-                              child: Text("Continue"),
-                            ))
-                      ],
-                    ),
-                    // Positioned(
-                    //   child: Padding(
-                    //     padding: EdgeInsets.all(10),
-                    //     child: Container(
-                    //       child: Align(
-                    //         // alignment: Alignment.center,
-                    //         child: Image.asset(
-                    //           "lib/assets/c.jpg",
-                    //           // fit: BoxFit.cover,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
+                      );
+                    }
+                  },
                 );
               }
             } else {
