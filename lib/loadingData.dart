@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
 import 'dart:convert';
 import 'country.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class LoadingData extends StatefulWidget {
   LoadingData({Key key}) : super(key: key);
@@ -77,41 +78,113 @@ class _LoadingDataState extends State<LoadingData> {
                             ),
                             Column(
                               children: <Widget>[
+                                SizedBox(
+                                  height: 50,
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 20.0),
                                   child: Align(
                                     alignment: Alignment.topCenter,
                                     child: Text(
-                                      "Corona Tracker",
+                                      "Corona",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 30),
+                                          fontSize: 40),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Image.asset(
-                                    "lib/assets/c.jpg",
-                                    // fit: BoxFit.cover,
-                                    height: 500,
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text(
+                                      "Tracker",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 40),
+                                    ),
                                   ),
                                 ),
                                 Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: RaisedButton(
-                                      color: Colors.green,
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    Home(countriesMap)));
-                                      },
-                                      child: Text("Continue"),
-                                    ))
+                                  padding: EdgeInsets.only(top: 20, bottom: 20),
+                                  child: SizedBox(
+                                    width: 250.0,
+                                    child: TyperAnimatedTextKit(
+                                        // speed: Duration(milliseconds: 100),
+                                        onTap: () {
+                                          print("Tap Event");
+                                        },
+                                        text: [
+                                          "Get the latest details about the spread of Coronavirus across countries",
+                                          "Within one touch",
+                                          "Press continue to start"
+                                        ],
+                                        textStyle: TextStyle(
+                                            fontSize: 30.0,
+                                            fontFamily: "Bobbers"),
+                                        textAlign: TextAlign.start,
+                                        alignment: AlignmentDirectional
+                                            .topStart // or Alignment.topLeft
+                                        ),
+                                  ),
+                                ),
+                                // Padding(
+                                //   padding: const EdgeInsets.all(10.0),
+                                //   child: Image.asset(
+                                //     "lib/assets/c.jpg",
+                                //     // fit: BoxFit.cover,
+                                //     height: 500,
+                                //   ),
+                                // ),
+                                // Padding(
+                                //     padding: EdgeInsets.all(10),
+                                //     child: RaisedButton(
+                                //       color: Colors.green,
+                                //       onPressed: () {
+                                //         Navigator.push(
+                                //             context,
+                                //             MaterialPageRoute(
+                                //                 builder: (context) =>
+                                //                     Home(countriesMap)));
+                                //       },
+                                //       child: Text("Continue"),
+                                //     ))
                               ],
                             ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 30),
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Home(countriesMap)))
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(colors: [
+                                          Colors.blue,
+                                          Colors.green
+                                        ]),
+                                        borderRadius:
+                                            BorderRadius.circular(18.0)),
+                                    height: 50,
+                                    width: 100,
+                                    child: Center(
+                                      child: Text(
+                                        "Continue",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
                             // Positioned(
                             //   child: Padding(
                             //     padding: EdgeInsets.all(10),

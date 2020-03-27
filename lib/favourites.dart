@@ -78,6 +78,9 @@ class _favouritesState extends State<favourites> {
                           } else {
                             Case case1 = snapshot.data;
                             return GestureDetector(
+                              onLongPress: () {
+                                print("long press");
+                              },
                               onTap: () {
                                 print("load details page");
                                 Navigator.push(
