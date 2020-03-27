@@ -205,7 +205,10 @@ class _HomeState extends State<Home> {
                               leading: IconButton(
                                   icon: Icon(
                                     Icons.star,
-                                    color: Colors.black,
+                                    color: (Hive.box('countriesT').get(cName) !=
+                                            null)
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                   onPressed: () => {addToFav(cName, "um")}),
                               trailing: Image.network(
@@ -251,7 +254,10 @@ class _HomeState extends State<Home> {
                               leading: IconButton(
                                   icon: Icon(
                                     Icons.star,
-                                    color: Colors.black,
+                                    color: (Hive.box('countriesT').get(cName) !=
+                                            null)
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                   onPressed: () => {addToFav(cName, "ir")}),
                               trailing: Image.network(
@@ -297,7 +303,10 @@ class _HomeState extends State<Home> {
                               leading: IconButton(
                                   icon: Icon(
                                     Icons.star,
-                                    color: Colors.black,
+                                    color: (Hive.box('countriesT').get(cName) !=
+                                            null)
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                   onPressed: () => {addToFav(cName, "gb")}),
                               trailing: Image.network(
@@ -343,7 +352,10 @@ class _HomeState extends State<Home> {
                               leading: IconButton(
                                   icon: Icon(
                                     Icons.star,
-                                    color: Colors.black,
+                                    color: (Hive.box('countriesT').get(cName) !=
+                                            null)
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                   onPressed: () => {addToFav(cName, "be")}),
                               trailing: Image.network(
@@ -390,7 +402,10 @@ class _HomeState extends State<Home> {
                               leading: IconButton(
                                   icon: Icon(
                                     Icons.star,
-                                    color: Colors.black,
+                                    color: (Hive.box('countriesT').get(cName) !=
+                                            null)
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                   onPressed: () => {addToFav(cName, cCode)}),
                               trailing: Container(

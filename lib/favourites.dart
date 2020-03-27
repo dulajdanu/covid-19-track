@@ -44,6 +44,20 @@ class _favouritesState extends State<favourites> {
     }
   }
 
+  removeFav(name) {
+    print(name);
+    // Hive.box('co')
+    Hive.box('countriesT').delete(name);
+    final cBox = Hive.box('countries');
+    for (var i = 0; i < cBox.length; i++) {
+      CountryModel country = cBox.getAt(i);
+
+      if (country.name == name) {
+        Hive.box('countries').deleteAt(i);
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,53 +93,79 @@ class _favouritesState extends State<favourites> {
                             );
                           } else {
                             Case case1 = snapshot.data;
-                            return GestureDetector(
-                              onLongPress: () {
-                                print("long press");
+                            return Dismissible(
+                              background: Container(
+                                color: Colors.redAccent,
+                                child: Row(
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    SizedBox(
+                                      width:
+                                          MediaQuery.of(context).size.width / 4,
+                                    ),
+                                    Text(
+                                      "Remove",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              key: Key(cModel.name),
+                              direction: DismissDirection.startToEnd,
+                              onDismissed: (direction) {
+                                setState(() {
+                                  removeFav(cModel.name);
+                                });
                               },
-                              onTap: () {
-                                print("load details page");
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => DetailScreen(
-                                            cModel.name,
-                                            case1.cases.toString(),
-                                            case1.todayCases.toString(),
-                                            case1.deaths.toString(),
-                                            case1.todayDeaths.toString(),
-                                            case1.recovered.toString(),
-                                            case1.critical.toString(),
-                                            cModel.code)));
-                              },
-                              child: Hero(
-                                tag: cModel.name,
-                                child: Material(
-                                  child: ListTile(
-                                      title: Row(
-                                        children: <Widget>[
-                                          Text(cModel.name),
-                                          SizedBox(
-                                            width: 20,
+                              child: GestureDetector(
+                                onTap: () {
+                                  print("load details page");
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => DetailScreen(
+                                              cModel.name,
+                                              case1.cases.toString(),
+                                              case1.todayCases.toString(),
+                                              case1.deaths.toString(),
+                                              case1.todayDeaths.toString(),
+                                              case1.recovered.toString(),
+                                              case1.critical.toString(),
+                                              cModel.code)));
+                                },
+                                child: Hero(
+                                  tag: cModel.name,
+                                  child: Material(
+                                    child: ListTile(
+                                        title: SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                            children: <Widget>[
+                                              Text(cModel.name),
+                                              SizedBox(
+                                                width: 20,
+                                              ),
+                                              Text("Cases today " +
+                                                  case1.todayCases.toString())
+                                            ],
                                           ),
-                                          Text("Cases today " +
-                                              case1.todayCases.toString())
-                                        ],
-                                      ),
-                                      // leading: Text(cde),
-                                      trailing:
-                                          (cModel.code.toString() != 'null'
-                                              ? Image.network(
-                                                  'https://www.countryflags.io/$cde/flat/64.png',
-                                                )
-                                              : Container(
-                                                  height: 50,
-                                                  width: 60,
-                                                  color: Colors.green,
-                                                ))
-                                      // subtitle: Text(
-                                      //     personModel.birthDate.toLocal().toString()),
-                                      ),
+                                        ),
+                                        // leading: Text(cde),
+                                        trailing:
+                                            (cModel.code.toString() != 'null'
+                                                ? Image.network(
+                                                    'https://www.countryflags.io/$cde/flat/64.png',
+                                                  )
+                                                : Container(
+                                                    height: 50,
+                                                    width: 60,
+                                                    color: Colors.green,
+                                                  ))
+                                        // subtitle: Text(
+                                        //     personModel.birthDate.toLocal().toString()),
+                                        ),
+                                  ),
                                 ),
                               ),
                             );
