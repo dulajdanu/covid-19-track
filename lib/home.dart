@@ -48,6 +48,7 @@ class _HomeState extends State<Home> {
   addToFav(cname, cCode) {
     if (Hive.box('countriesT').get(cname) != null) {
       _scaffoldKey.currentState.showSnackBar(new SnackBar(
+          duration: Duration(seconds: 1),
           content: new Text("This country is already added as a favourite")));
     } else {
       try {
@@ -56,10 +57,16 @@ class _HomeState extends State<Home> {
         Hive.box('countriesT').put(cname, CountryModel(cname, cCode));
 
         _scaffoldKey.currentState.showSnackBar(new SnackBar(
+            duration: Duration(seconds: 1),
             content: new Text("This country added as a favourite")));
+
+        if (mounted) {
+          setState(() {});
+        }
       } catch (e) {
-        _scaffoldKey.currentState
-            .showSnackBar(new SnackBar(content: new Text("Please try again")));
+        _scaffoldKey.currentState.showSnackBar(new SnackBar(
+            duration: Duration(seconds: 1),
+            content: new Text("Please try again")));
       }
     }
   }
@@ -108,7 +115,7 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "The Latest Details",
+                    "The latest details",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
@@ -146,7 +153,14 @@ class _HomeState extends State<Home> {
                               child: ListTile(
                                 // onTap: () => print("press"),
                                 leading: IconButton(
-                                    icon: Icon(Icons.star),
+                                    icon: Icon(
+                                      Icons.star,
+                                      color:
+                                          (Hive.box('countriesT').get(cName) !=
+                                                  null)
+                                              ? Colors.red
+                                              : Colors.black,
+                                    ),
                                     onPressed: () => {addToFav(cName, cCode)}),
                                 isThreeLine: true,
                                 trailing: Image.network(
@@ -189,7 +203,10 @@ class _HomeState extends State<Home> {
                           child: Material(
                             child: ListTile(
                               leading: IconButton(
-                                  icon: Icon(Icons.star),
+                                  icon: Icon(
+                                    Icons.star,
+                                    color: Colors.black,
+                                  ),
                                   onPressed: () => {addToFav(cName, "um")}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/um/flat/64.png',
@@ -232,7 +249,10 @@ class _HomeState extends State<Home> {
                           child: Material(
                             child: ListTile(
                               leading: IconButton(
-                                  icon: Icon(Icons.star),
+                                  icon: Icon(
+                                    Icons.star,
+                                    color: Colors.black,
+                                  ),
                                   onPressed: () => {addToFav(cName, "ir")}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/ir/flat/64.png',
@@ -275,7 +295,10 @@ class _HomeState extends State<Home> {
                           child: Material(
                             child: ListTile(
                               leading: IconButton(
-                                  icon: Icon(Icons.star),
+                                  icon: Icon(
+                                    Icons.star,
+                                    color: Colors.black,
+                                  ),
                                   onPressed: () => {addToFav(cName, "gb")}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/gb/flat/64.png',
@@ -318,7 +341,10 @@ class _HomeState extends State<Home> {
                           child: Material(
                             child: ListTile(
                               leading: IconButton(
-                                  icon: Icon(Icons.star),
+                                  icon: Icon(
+                                    Icons.star,
+                                    color: Colors.black,
+                                  ),
                                   onPressed: () => {addToFav(cName, "be")}),
                               trailing: Image.network(
                                 'https://www.countryflags.io/be/flat/64.png',
@@ -362,7 +388,10 @@ class _HomeState extends State<Home> {
                           child: Material(
                             child: ListTile(
                               leading: IconButton(
-                                  icon: Icon(Icons.star),
+                                  icon: Icon(
+                                    Icons.star,
+                                    color: Colors.black,
+                                  ),
                                   onPressed: () => {addToFav(cName, cCode)}),
                               trailing: Container(
                                 height: 50,

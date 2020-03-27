@@ -21,6 +21,7 @@ class _favouritesState extends State<favourites> {
     super.initState();
     print("inside fav page");
     // Hive.box('countries').clear();
+    // Hive.box('countriesT').clear();
   }
 
   Future<Case> getCountryData(val) async {
