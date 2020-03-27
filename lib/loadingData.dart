@@ -136,29 +136,33 @@ class _LoadingDataState extends State<LoadingData> {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 20, bottom: 20),
-                                  child: SizedBox(
-                                    width: 250.0,
-                                    child: TyperAnimatedTextKit(
-                                        // speed: Duration(milliseconds: 100),
-                                        onTap: () {
-                                          print("Tap Event");
-                                        },
-                                        text: [
-                                          "Get the latest updates of Covid 19 pandemic outbreak",
-                                          "At your fingertip",
-                                          "Press continue to start"
-                                        ],
-                                        textStyle: TextStyle(
-                                            fontSize: 30.0,
-                                            fontFamily: "Bobbers"),
-                                        textAlign: TextAlign.start,
-                                        alignment: AlignmentDirectional
-                                            .topStart // or Alignment.topLeft
+                                (mounted == true)
+                                    ? Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 20, bottom: 20),
+                                        child: SizedBox(
+                                          width: 250.0,
+                                          child: TyperAnimatedTextKit(
+                                              // speed: Duration(milliseconds: 100),
+                                              onTap: () {
+                                                print("Tap Event");
+                                              },
+                                              text: [
+                                                "Get the latest updates of Covid 19 pandemic outbreak",
+                                                "At your fingertip",
+                                                "Press continue to start"
+                                              ],
+                                              textStyle: TextStyle(
+                                                  fontSize: 30.0,
+                                                  fontFamily: "Bobbers"),
+                                              textAlign: TextAlign.start,
+                                              alignment: AlignmentDirectional
+                                                  .topStart // or Alignment.topLeft
+                                              ),
                                         ),
-                                  ),
-                                ),
+                                      )
+                                    : Container()
+
                                 // Padding(
                                 //   padding: const EdgeInsets.all(10.0),
                                 //   child: Image.asset(
