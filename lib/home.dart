@@ -629,7 +629,10 @@ class DataSearch extends SearchDelegate<String> {
 
     final suggestionList = query.isEmpty
         ? recentCases
-        : casesString.where((p) => p.startsWith(query)).toList();
+        : casesString
+            .where((p) => p.startsWith(
+                query.substring(0, 1).toUpperCase() + query.substring(1)))
+            .toList();
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (BuildContext context, int index) {
