@@ -20,6 +20,8 @@ class Home extends StatefulWidget {
 getCountry() {}
 
 class _HomeState extends State<Home> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   Future<List<Case>> _getCases() async {
     var response = await http.get("https://corona.lmao.ninja/countries");
     if (response.statusCode == 200) {
@@ -44,15 +46,22 @@ class _HomeState extends State<Home> {
   }
 
   addToFav(cname, cCode) {
-    Hive.box('countries')
-        .add(CountryModel(cname, cCode))
-        .then((v) => print("Country added successfully"))
-        .catchError((onError) => print(onError));
+    if (Hive.box('countriesT').get(cname) != null) {
+      _scaffoldKey.currentState.showSnackBar(new SnackBar(
+          content: new Text("This country is already added as a favourite")));
+    } else {
+      try {
+        Hive.box('countries').add(CountryModel(cname, cCode));
 
-    Hive.box('countriesT')
-        .put(cname, CountryModel(cname, cCode))
-        .then((v) => print("Country added to temp box successfully"))
-        .catchError((onError) => print(onError));
+        Hive.box('countriesT').put(cname, CountryModel(cname, cCode));
+
+        _scaffoldKey.currentState.showSnackBar(new SnackBar(
+            content: new Text("This country added as a favourite")));
+      } catch (e) {
+        _scaffoldKey.currentState
+            .showSnackBar(new SnackBar(content: new Text("Please try again")));
+      }
+    }
   }
 
   @override
@@ -66,6 +75,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.lightBlue,
         actions: <Widget>[
