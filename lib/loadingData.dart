@@ -34,6 +34,15 @@ class _LoadingDataState extends State<LoadingData> {
     }
   }
 
+  List<Box> boxList = [];
+  Future<List<Box>> _openBox() async {
+    var box_fav = await Hive.openBox("countries");
+    var box_favT = await Hive.openBox("countriesT");
+    boxList.add(box_fav);
+    boxList.add(box_favT);
+    return boxList;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +72,7 @@ class _LoadingDataState extends State<LoadingData> {
                 //   },
                 // );
                 return FutureBuilder(
-                  future: Hive.openBox('countries'),
+                  future: _openBox(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       if (snapshot.hasError)

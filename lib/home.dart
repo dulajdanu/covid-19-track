@@ -48,6 +48,11 @@ class _HomeState extends State<Home> {
         .add(CountryModel(cname, cCode))
         .then((v) => print("Country added successfully"))
         .catchError((onError) => print(onError));
+
+    Hive.box('countriesT')
+        .put(cname, CountryModel(cname, cCode))
+        .then((v) => print("Country added to temp box successfully"))
+        .catchError((onError) => print(onError));
   }
 
   @override
@@ -62,6 +67,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.lightBlue,
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 5),
