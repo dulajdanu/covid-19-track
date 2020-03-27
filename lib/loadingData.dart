@@ -74,8 +74,30 @@ class _LoadingDataState extends State<LoadingData> {
                             Container(
                               height: MediaQuery.of(context).size.height,
                               width: MediaQuery.of(context).size.width,
-                              color: Colors.redAccent,
+                              // color: Colors.redAccent,
+                              child: Image.asset(
+                                "lib/assets/covid.jpg",
+                                fit: BoxFit.cover,
+                                colorBlendMode: BlendMode.saturation,
+                              ),
                             ),
+                            Container(
+                              // height: 350.0,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                        Colors.white,
+                                        Colors.grey.withOpacity(0.0),
+                                      ],
+                                      stops: [
+                                        0.0,
+                                        1.0
+                                      ])),
+                            ),
+
                             Column(
                               children: <Widget>[
                                 SizedBox(
@@ -86,7 +108,7 @@ class _LoadingDataState extends State<LoadingData> {
                                   child: Align(
                                     alignment: Alignment.topCenter,
                                     child: Text(
-                                      "Corona",
+                                      "Covid 19",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 40),
@@ -115,8 +137,8 @@ class _LoadingDataState extends State<LoadingData> {
                                           print("Tap Event");
                                         },
                                         text: [
-                                          "Get the latest details about the spread of Coronavirus across countries",
-                                          "Within one touch",
+                                          "Get the latest updates of Covid 19 pandemic outbreak",
+                                          "At your fingertip",
                                           "Press continue to start"
                                         ],
                                         textStyle: TextStyle(
@@ -167,7 +189,8 @@ class _LoadingDataState extends State<LoadingData> {
                                     decoration: BoxDecoration(
                                         gradient: LinearGradient(colors: [
                                           Colors.blue,
-                                          Colors.green
+                                          Colors.lightBlueAccent,
+                                          Colors.lightBlue,
                                         ]),
                                         borderRadius:
                                             BorderRadius.circular(18.0)),
