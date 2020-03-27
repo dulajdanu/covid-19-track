@@ -62,112 +62,114 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        child: Center(
-            child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 80,
-            ),
-            Text(
-              widget.country,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-            ),
-            Hero(
-                tag: widget.country,
-                child: Container(
-                    height: 150,
-                    width: 180,
-                    child: (cCode != "")
-                        ? Image.network(
-                            "https://www.countryflags.io/$cCode/flat/64.png",
-                            fit: BoxFit.contain,
-                          )
-                        : Container(
-                            color: Colors.green,
-                          ))),
-            Text(
-              "Total Number Of Cases",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              widget.cases,
-              style: TextStyle(fontSize: 15),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Total Number Of Cases Today",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              widget.todayCases,
-              style: TextStyle(fontSize: 15),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Total Number Of Deaths",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              widget.deaths,
-              style: TextStyle(fontSize: 15),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Total Number Of Today Deaths",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              widget.todayDeaths,
-              style: TextStyle(fontSize: 15),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Total Number Of Recovered",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              widget.recovered,
-              style: TextStyle(fontSize: 15),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Total Number Of Critical",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              widget.critical != "null" ? widget.critical : 0.toString(),
-              style: TextStyle(fontSize: 15),
-            )
-          ],
-        )),
+        child: SingleChildScrollView(
+          child: Center(
+              child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 80,
+              ),
+              Text(
+                widget.country,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              Hero(
+                  tag: widget.country,
+                  child: Container(
+                      height: 150,
+                      width: 180,
+                      child: (cCode != "")
+                          ? Image.network(
+                              "https://www.countryflags.io/$cCode/flat/64.png",
+                              fit: BoxFit.contain,
+                            )
+                          : Container(
+                              color: Colors.green,
+                            ))),
+              Text(
+                "Total Number Of Cases",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                widget.cases,
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Total Number Of Cases Today",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                widget.todayCases,
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Total Number Of Deaths",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                widget.deaths,
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Total Number Of Today Deaths",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                widget.todayDeaths,
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Total Number Of Recovered",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                widget.recovered,
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Total Number Of Critical",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                widget.critical != "null" ? widget.critical : 0.toString(),
+                style: TextStyle(fontSize: 15),
+              )
+            ],
+          )),
+        ),
         onTap: () {
           Navigator.pop(context);
         },

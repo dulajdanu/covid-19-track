@@ -633,36 +633,135 @@ class DataSearch extends SearchDelegate<String> {
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          // onTap: () {
-          //   showResults(context);
-          // },
-          // leading: Icon(Icons.list),
-          trailing: IconButton(
-              icon: Icon(
-                Icons.star,
-                color:
-                    (Hive.box('countriesT').get(suggestionList[index]) != null)
-                        ? Colors.red
-                        : Colors.black,
+        var val = casesMap[suggestionList[index]].split(",");
+        return GestureDetector(
+          onTap: () {
+            if (suggestionList[index] == 'USA') {
+              print("load details page");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailScreen(
+                          suggestionList[index],
+                          val[1],
+                          val[5],
+                          val[3],
+                          val[6],
+                          val[4],
+                          val[2],
+                          'um')));
+            } else if (suggestionList[index] == "Iran") {
+              print("load details page");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailScreen(
+                          suggestionList[index],
+                          val[1],
+                          val[5],
+                          val[3],
+                          val[6],
+                          val[4],
+                          val[2],
+                          'ir')));
+            } else if (suggestionList[index] == "UK") {
+              print("load details page");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailScreen(
+                          suggestionList[index],
+                          val[1],
+                          val[5],
+                          val[3],
+                          val[6],
+                          val[4],
+                          val[2],
+                          'gb')));
+            } else if (suggestionList[index] == "Belgium") {
+              print("load details page");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailScreen(
+                          suggestionList[index],
+                          val[1],
+                          val[5],
+                          val[3],
+                          val[6],
+                          val[4],
+                          val[2],
+                          'be')));
+            } else {
+              if (val[0] != "null") {
+                // print(val[0]);
+                print("load details page in else part");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailScreen(
+                            suggestionList[index],
+                            val[1],
+                            val[5],
+                            val[3],
+                            val[6],
+                            val[4],
+                            val[2],
+                            val[0])));
+              } else {
+                print("load details page with null codes");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailScreen(
+                            suggestionList[index],
+                            val[1],
+                            val[5],
+                            val[3],
+                            val[6],
+                            val[4],
+                            val[2],
+                            "")));
+              }
+            }
+          },
+          child: Hero(
+            tag: suggestionList[index],
+            child: Material(
+              child: ListTile(
+                // onTap: () {
+                //   showResults(context);
+                // },
+                // leading: Icon(Icons.list),
+                trailing: IconButton(
+                    icon: Icon(
+                      Icons.star,
+                      color:
+                          (Hive.box('countriesT').get(suggestionList[index]) !=
+                                  null)
+                              ? Colors.red
+                              : Colors.black,
+                    ),
+                    onPressed: () {
+                      addtoFavonSearch(suggestionList[index],
+                          casesMap[suggestionList[index]]);
+                    }),
+                // subtitle: Text(cases[index].cases.toString()),
+                title: RichText(
+                  text: TextSpan(
+                      text: suggestionList[index].substring(0, query.length),
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                      children: [
+                        TextSpan(
+                            text: suggestionList[index].substring(query.length),
+                            style: TextStyle(color: Colors.grey))
+                      ]),
+                ),
               ),
-              onPressed: () {
-                addtoFavonSearch(
-                    suggestionList[index], casesMap[suggestionList[index]]);
-              }),
-          // subtitle: Text(cases[index].cases.toString()),
-          title: RichText(
-            text: TextSpan(
-                text: suggestionList[index].substring(0, query.length),
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20),
-                children: [
-                  TextSpan(
-                      text: suggestionList[index].substring(query.length),
-                      style: TextStyle(color: Colors.grey))
-                ]),
+            ),
           ),
         );
       },
